@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
  *
  * @author  jacekpoz
  * @version 0.0.5
- * @since   0.0.1
+ * @since   0.1.0
  */
 public final class Util {
 
@@ -22,7 +22,7 @@ public final class Util {
      * Nope.
      *
      * @author  jacekpoz
-     * @since 0.0.1
+     * @since 0.1.0
      */
     private Util() {
         throw new AssertionError("nope");
@@ -34,7 +34,7 @@ public final class Util {
      * @param  date date to be turned into {@code String}
      * @return {@code String} made from the date
      * @author jacekpoz
-     * @since  0.0.2
+     * @since  0.2.0
      */
     public static String localDateTimeToString(LocalDateTime date) {
         return String.format("<html> %02d:%02d:%02d<br>%02d-%02d-%04d</html>",
@@ -48,7 +48,7 @@ public final class Util {
      * @param  users username sources
      * @return condensed usernames
      * @author jacekpoz
-     * @since  0.0.2
+     * @since  0.2.0
      */
     public static String userListToString(List<User> users) {
         List<String> nicknames = users.stream()
@@ -79,7 +79,7 @@ public final class Util {
      * @param  usernames what do you expect this to be
      * @return if you don't know what this is you should go see a doctor
      * @author jacekpoz
-     * @since  0.0.3
+     * @since  0.3.0
      */
     public static String usernamesToString(List<String> usernames) {
         StringBuilder sb = new StringBuilder();
@@ -103,7 +103,7 @@ public final class Util {
      * @param  users         users that will be filtered out by their username
      * @return filtered list of users with similar usernames to {@code inputUsername}
      * @author jacekpoz
-     * @since  0.0.3
+     * @since  0.3.0
      * @see    <a href="https://en.wikipedia.org/wiki/Damerau%E2%80%93Levenshtein_distance">Damerau-Levenshtein distance</a>
      */
     public static List<User> compareUsernames(String inputUsername, List<User> users) {
