@@ -9,12 +9,12 @@ import com.github.jacekpoz.common.sendables.database.queries.basequeries.UserQue
 import java.sql.SQLException
 
 class LoginResult @JsonCreator constructor(
-    @JsonProperty("query") lq: LoginQuery?
+    @JsonProperty("query") lq: LoginQuery?,
 ) : UserResult(lq!!) {
 
     @JsonProperty("result")
-    lateinit var result: Login
+    var result: Login = Login.DEFAULT
 
     @JsonProperty("ex")
-    lateinit var ex: SQLException
+    var ex: SQLException = SQLException()
 }

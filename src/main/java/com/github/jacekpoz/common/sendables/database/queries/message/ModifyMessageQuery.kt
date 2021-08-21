@@ -7,9 +7,9 @@ import com.github.jacekpoz.common.sendables.database.queries.basequeries.Message
 open class ModifyMessageQuery @JsonCreator constructor(
     @JsonProperty("messageID") messageID: Long,
     @JsonProperty("chatID") chatID: Long,
-    @JsonProperty("columnToModify") private val columnToModify: String,
-    @JsonProperty("newValue") private val newValue: String,
-    @JsonProperty("callerID") callerID: Long
+    @JsonProperty("columnToModify") private val columnToModify: String?,
+    @JsonProperty("newValue") private val newValue: String?,
+    @JsonProperty("callerID") callerID: Long,
 ) : MessageQuery(messageID, chatID, callerID) {
 
     override fun equals(other: Any?): Boolean {

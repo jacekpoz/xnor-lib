@@ -7,8 +7,8 @@ import com.github.jacekpoz.common.sendables.database.queries.basequeries.Message
 
 open class GetMessagesInChatQuery @JsonCreator constructor(
     @JsonProperty("chatID") chatID: Long,
-    @JsonProperty("offset") private val offset: Long = 0,
-    @JsonProperty("limit") private val limit: Long = Constants.DEFAULT_MESSAGES_LIMIT,
+    @JsonProperty("offset") val offset: Long = 0,
+    @JsonProperty("limit") val limit: Long = Constants.DEFAULT_MESSAGES_LIMIT,
     @JsonProperty("callerID") callerID: Long,
 ) : MessageQuery(-1, chatID, callerID) {
 

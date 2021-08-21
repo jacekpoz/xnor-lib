@@ -6,8 +6,8 @@ import com.github.jacekpoz.common.sendables.database.queries.basequeries.ChatQue
 
 open class ModifyChatQuery @JsonCreator constructor(
     @JsonProperty("chatID") chatID: Long,
-    @JsonProperty("columnToModify") val columnToModify: String,
-    @JsonProperty("newValue") val newValue: String,
+    @JsonProperty("columnToModify") val columnToModify: String?,
+    @JsonProperty("newValue") val newValue: String?,
     @JsonProperty("callerID") callerID: Long,
 ) : ChatQuery(chatID, callerID) {
 

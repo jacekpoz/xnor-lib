@@ -7,9 +7,9 @@ import com.github.jacekpoz.common.sendables.database.queries.basequeries.Message
 open class InsertMessageQuery @JsonCreator constructor(
     @JsonProperty("messageID") messageID: Long,
     @JsonProperty("chatID") chatID: Long,
-    @JsonProperty("authorID") private val authorID: Long,
-    @JsonProperty("content") private val content: String,
-    @JsonProperty("callerID") callerID: Long
+    @JsonProperty("authorID") val authorID: Long,
+    @JsonProperty("content") val content: String?,
+    @JsonProperty("callerID") callerID: Long,
 ) : MessageQuery(messageID, chatID, callerID) {
 
     override fun equals(other: Any?): Boolean {

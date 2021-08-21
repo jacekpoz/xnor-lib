@@ -7,7 +7,7 @@ import com.github.jacekpoz.common.sendables.database.queries.basequeries.UserQue
 open class SendFriendRequestQuery @JsonCreator constructor(
     @JsonProperty("senderID") senderID: Long,
     @JsonProperty("friendID") val friendID: Long,
-    @JsonProperty("callerID") callerID: Long
+    @JsonProperty("callerID") callerID: Long,
 ) : UserQuery(senderID, callerID) {
 
     override fun equals(other: Any?): Boolean {

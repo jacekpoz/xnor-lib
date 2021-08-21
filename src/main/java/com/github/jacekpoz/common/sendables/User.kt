@@ -12,9 +12,9 @@ import java.time.LocalDateTime
  */
 data class User @JsonCreator constructor(
     @JsonProperty("userID") val userID: Long,
-    @JsonProperty("username") var username: String,
-    @JsonProperty("hashedPassword") var hashedPassword: String,
-    @JsonProperty("dateJoined") val dateJoined: LocalDateTime,
+    @JsonProperty("username") var username: String?,
+    @JsonProperty("hashedPassword") var hashedPassword: String?,
+    @JsonProperty("dateJoined") val dateJoined: LocalDateTime? = LocalDateTime.MIN,
 ) : Sendable {
 
     private val friendsIDs: MutableList<Long> = ArrayList()

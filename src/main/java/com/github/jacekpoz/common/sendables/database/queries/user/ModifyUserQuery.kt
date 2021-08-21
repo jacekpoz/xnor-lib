@@ -6,8 +6,8 @@ import com.github.jacekpoz.common.sendables.database.queries.basequeries.UserQue
 
 open class ModifyUserQuery @JsonCreator constructor(
     @JsonProperty("userID") userID: Long,
-    @JsonProperty("columnToModify") private val columnToModify: String,
-    @JsonProperty("newValue") private val newValue: String,
+    @JsonProperty("columnToModify") private val columnToModify: String?,
+    @JsonProperty("newValue") private val newValue: String?,
     @JsonProperty("callerID") callerID: Long,
 ) : UserQuery(userID, callerID) {
 

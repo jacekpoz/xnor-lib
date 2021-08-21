@@ -5,8 +5,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.jacekpoz.common.sendables.database.queries.basequeries.UserQuery
 
 open class RegisterQuery @JsonCreator constructor(
-    @JsonProperty("username") private val username: String,
-    @JsonProperty("hash") private val hash: String,
+    @JsonProperty("username") val username: String?,
+    @JsonProperty("hash") val hash: String?,
     @JsonProperty("callerID") callerID: Long,
 ) : UserQuery(-1, callerID) {
 

@@ -7,12 +7,14 @@ public class EnumResults {
         ACCOUNT_DOESNT_EXIST,
         WRONG_PASSWORD,
         SQL_EXCEPTION,
+        DEFAULT
     }
 
     public enum Register {
         ACCOUNT_CREATED,
         USERNAME_TAKEN,
         SQL_EXCEPTION,
+        DEFAULT
     }
 
     public enum AddFriend {

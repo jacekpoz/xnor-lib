@@ -11,7 +11,7 @@ import com.github.jacekpoz.common.sendables.database.queries.basequeries.UserQue
 import java.util.ArrayList
 
 open class UserResult @JsonCreator constructor(
-    @JsonProperty("query") override val query: UserQuery?
+    @JsonProperty("query") override val query: UserQuery?,
 ) : Result<User> {
 
     @JsonProperty("users")

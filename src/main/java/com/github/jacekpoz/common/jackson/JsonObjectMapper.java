@@ -1,5 +1,6 @@
 package com.github.jacekpoz.common.jackson;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.jsontype.NamedType;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -14,6 +15,7 @@ import com.github.jacekpoz.common.sendables.database.results.*;
 public class JsonObjectMapper extends ObjectMapper {
 
     public JsonObjectMapper() {
+        configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         registerModule(new JavaTimeModule());
         registerSubtypes0(
                 Chat.class,

@@ -6,7 +6,7 @@ import com.github.jacekpoz.common.sendables.database.queries.basequeries.UserQue
 
 open class AcceptFriendRequestQuery @JsonCreator constructor(
     @JsonProperty("senderID") senderID: Long,
-    @JsonProperty("friendID") private val friendID: Long,
+    @JsonProperty("friendID") val friendID: Long,
     @JsonProperty("callerID") callerID: Long,
 ) : UserQuery(senderID, callerID) {
 

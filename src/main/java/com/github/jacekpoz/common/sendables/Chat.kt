@@ -12,8 +12,8 @@ import java.time.LocalDateTime
  */
 data class Chat @JsonCreator constructor(
     @JsonProperty("chatID") val chatID: Long = -1,
-    @JsonProperty("chatName") var chatName: String = "dupa",
-    @JsonProperty("dateCreated") val created: LocalDateTime = LocalDateTime.MIN,
+    @JsonProperty("chatName") var chatName: String?,
+    @JsonProperty("dateCreated") val created: LocalDateTime? = LocalDateTime.MIN,
     @JsonProperty("messageCounter") var messageCounter: Long = -1,
 ) : Sendable {
 

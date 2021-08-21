@@ -8,12 +8,12 @@ import com.github.jacekpoz.common.EnumResults.Register
 import java.sql.SQLException
 
 class RegisterResult @JsonCreator constructor(
-    @JsonProperty("query") uq: UserQuery?
+    @JsonProperty("query") uq: UserQuery?,
 ) : UserResult(uq!!) {
 
     @JsonProperty("result")
-    lateinit var result: Register
+    var result: Register = Register.DEFAULT
 
     @JsonProperty("ex")
-    lateinit var ex: SQLException
+    var ex: SQLException = SQLException()
 }

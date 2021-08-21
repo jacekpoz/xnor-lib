@@ -9,7 +9,7 @@ import com.github.jacekpoz.common.sendables.database.queries.basequeries.Query
 import java.util.ArrayList
 
 open class MessageResult @JsonCreator constructor(
-    @JsonProperty("query") override val query: MessageQuery?
+    @JsonProperty("query") override val query: MessageQuery?,
 ) : Result<Message> {
 
     @JsonProperty("messages")
