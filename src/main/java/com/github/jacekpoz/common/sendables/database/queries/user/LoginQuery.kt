@@ -1,26 +1,29 @@
-package com.github.jacekpoz.common.sendables.database.queries.user;
+package com.github.jacekpoz.common.sendables.database.queries.user
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonProperty
 
-@ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
-public class LoginQuery extends GetUserQuery {
+open class LoginQuery @JsonCreator constructor(
+    @JsonProperty("username") username: String?,
+    @JsonProperty("password") val password: ByteArray,
+    @JsonProperty("callerID") callerID: Long,
+) : GetUserQuery(username, callerID) {
 
-    @Getter
-    private final byte[] password;
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is LoginQuery) return false
+        if (!super.equals(other)) return false
 
-    @JsonCreator
-    public LoginQuery(
-            @JsonProperty("username") String username,
-            @JsonProperty("password") byte[] password,
-            @JsonProperty("callerID") long callerID
-    ) {
-        super(username, callerID);
-        this.password = password;
+        if (!password.contentEquals(other.password)) return false
+
+        return true
     }
 
+    override fun hashCode(): Int {
+        var result = super.hashCode()
+        result = 31 * result + password.contentHashCode()
+        return result
+    }
+
+    override fun toString(): String = "LoginQuery(username=$username, password=${password.contentToString()}, callerID=$callerID)"
 }

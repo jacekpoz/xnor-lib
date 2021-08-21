@@ -1,69 +1,58 @@
-package com.github.jacekpoz.common.sendables.database.results;
+package com.github.jacekpoz.common.sendables.database.results
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.jacekpoz.common.sendables.Message;
-import com.github.jacekpoz.common.sendables.database.queries.basequeries.MessageQuery;
-import com.github.jacekpoz.common.sendables.database.queries.basequeries.Query;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.jacekpoz.common.sendables.database.queries.basequeries.MessageQuery
+import com.fasterxml.jackson.annotation.JsonGetter
+import com.github.jacekpoz.common.sendables.Message
+import com.github.jacekpoz.common.sendables.database.queries.basequeries.Query
+import java.util.ArrayList
 
-import java.util.ArrayList;
-import java.util.List;
+open class MessageResult @JsonCreator constructor(
+    @JsonProperty("query") override val query: MessageQuery?
+) : Result<Message> {
 
-@ToString
-@EqualsAndHashCode
-public class MessageResult implements Result<Message> {
-
-    private final MessageQuery query;
     @JsonProperty("messages")
-    private final List<Message> messages;
-    @JsonProperty("success")
-    private boolean success;
+    private val messages: MutableList<Message> = ArrayList()
 
-    @JsonCreator
-    public MessageResult(
-            @JsonProperty("query") MessageQuery mq
-    ) {
-        query = mq;
-        messages = new ArrayList<>();
-    }
+    @JsonProperty("success")
+    override var success = false
 
     @JsonGetter("messages")
-    @Override
-    public List<Message> get() {
-        return messages;
+    override fun get(): List<Message>? {
+        return messages
     }
 
-    @Override
-    public Message get(int index) {
-        return messages.get(index);
+    override operator fun get(index: Int): Message {
+        return messages[index]
     }
 
-    @Override
-    public void add(Message message) {
-        messages.add(message);
+    override fun add(item: Message) {
+        messages.add(item)
     }
 
-    @Override
-    public void add(List<Message> messages) {
-        this.messages.addAll(messages);
+    override fun add(items: List<Message>) {
+        this.messages.addAll(items)
     }
 
-    @Override
-    public Query<Message> getQuery() {
-        return query;
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is MessageResult) return false
+
+        if (query != other.query) return false
+        if (messages != other.messages) return false
+        if (success != other.success) return false
+
+        return true
     }
 
-    @Override
-    public void setSuccess(boolean success) {
-        this.success = success;
+    override fun hashCode(): Int {
+        var result = query.hashCode()
+        result = 31 * result + messages.hashCode()
+        result = 31 * result + success.hashCode()
+        return result
     }
 
-    @Override
-    public boolean success() {
-        return success;
-    }
+    override fun toString(): String = "MessageResult(query=$query, messages=$messages, success=$success)"
 
 }

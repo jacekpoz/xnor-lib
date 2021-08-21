@@ -1,32 +1,15 @@
-package com.github.jacekpoz.common.sendables.database.queries.chat;
+package com.github.jacekpoz.common.sendables.database.queries.chat
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.jacekpoz.common.sendables.database.queries.basequeries.ChatQuery;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.jacekpoz.common.sendables.database.queries.basequeries.ChatQuery
 
-@ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
-public class InsertChatQuery extends ChatQuery {
+open class InsertChatQuery @JsonCreator constructor(
+    @JsonProperty("chatName") val chatName: String,
+    @JsonProperty("memberIDs") val memberIDs: List<Long>,
+    @JsonProperty("callerIDs") callerID: Long,
+) : ChatQuery(-1, callerID) {
 
-    @Getter
-    private final String chatName;
-    @Getter
-    private final List<Long> memberIDs;
-
-    @JsonCreator
-    public InsertChatQuery(
-            @JsonProperty("chatName") String chatName,
-            @JsonProperty("memberIDs") List<Long> memberIDs,
-            @JsonProperty("callerIDs") long callerID
-    ) {
-        super(-1, callerID);
-        this.chatName = chatName;
-        this.memberIDs = memberIDs;
-    }
-
+    override fun toString(): String = "InsertChatQuery(chatName=$chatName, memberIDs=$memberIDs, callerID=$callerID)"
 }

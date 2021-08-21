@@ -1,27 +1,28 @@
-package com.github.jacekpoz.common.sendables.database.queries.chat;
+package com.github.jacekpoz.common.sendables.database.queries.chat
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonProperty
 
-@ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
-public class GetUsersChatsQuery extends GetChatQuery {
+open class GetUsersChatsQuery @JsonCreator constructor(
+    @JsonProperty("userID") val userID: Long,
+    @JsonProperty("callerID") callerID: Long,
+) : GetChatQuery(-1, callerID) {
 
-    private final long userID;
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is GetUsersChatsQuery) return false
+        if (!super.equals(other)) return false
 
-    @JsonCreator
-    public GetUsersChatsQuery(
-            @JsonProperty("userID") long userID,
-            @JsonProperty("callerID") long callerID
-    ) {
-        super(-1, callerID);
-        this.userID = userID;
+        if (userID != other.userID) return false
+
+        return true
     }
 
-    public long getUserID() {
-        return userID;
+    override fun hashCode(): Int {
+        var result = super.hashCode()
+        result = 31 * result + userID.hashCode()
+        return result
     }
 
+    override fun toString(): String = "GetUsersChatsQuery(userID=$userID, callerID=$callerID)"
 }

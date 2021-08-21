@@ -1,69 +1,57 @@
-package com.github.jacekpoz.common.sendables.database.results;
+package com.github.jacekpoz.common.sendables.database.results
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.jacekpoz.common.sendables.Chat;
-import com.github.jacekpoz.common.sendables.database.queries.basequeries.ChatQuery;
-import com.github.jacekpoz.common.sendables.database.queries.basequeries.Query;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonGetter
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.jacekpoz.common.sendables.Chat
+import com.github.jacekpoz.common.sendables.database.queries.basequeries.ChatQuery
+import com.github.jacekpoz.common.sendables.database.queries.basequeries.Query
 
-import java.util.ArrayList;
-import java.util.List;
+open class ChatResult @JsonCreator constructor(
+    @JsonProperty("query") override val query: ChatQuery?
+) : Result<Chat> {
 
-@ToString
-@EqualsAndHashCode
-public class ChatResult implements Result<Chat> {
-
-    private final ChatQuery query;
     @JsonProperty("chats")
-    private final List<Chat> chats;
-    @JsonProperty("success")
-    private boolean success;
+    private val chats: MutableList<Chat> = ArrayList()
 
-    @JsonCreator
-    public ChatResult(
-            @JsonProperty("query") ChatQuery cq
-    ) {
-        query = cq;
-        chats = new ArrayList<>();
-    }
+    @JsonProperty("success")
+    override var success = false
 
     @JsonGetter("chats")
-    @Override
-    public List<Chat> get() {
-        return chats;
+    override fun get(): List<Chat> {
+        return chats
     }
 
-    @Override
-    public Chat get(int index) {
-        return chats.get(index);
+    override fun get(index: Int): Chat {
+        return chats[index]
     }
 
-    @Override
-    public void add(Chat chat) {
-        chats.add(chat);
+    override fun add(item: Chat) {
+        chats.add(item)
     }
 
-    @Override
-    public void add(List<Chat> chats) {
-        this.chats.addAll(chats);
+    override fun add(items: List<Chat>) {
+        this.chats.addAll(items)
     }
 
-    @Override
-    public Query<Chat> getQuery() {
-        return query;
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is ChatResult) return false
+
+        if (query != other.query) return false
+        if (chats != other.chats) return false
+        if (success != other.success) return false
+
+        return true
     }
 
-    @Override
-    public void setSuccess(boolean success) {
-        this.success = success;
+    override fun hashCode(): Int {
+        var result = query.hashCode()
+        result = 31 * result + chats.hashCode()
+        result = 31 * result + success.hashCode()
+        return result
     }
 
-    @Override
-    public boolean success() {
-        return success;
-    }
+    override fun toString(): String = "ChatResult(query=$query, chats=$chats, success=$success)"
 
 }

@@ -1,16 +1,13 @@
-package com.github.jacekpoz.common.exceptions;
+package com.github.jacekpoz.common.exceptions
 
-import com.github.jacekpoz.common.sendables.Sendable;
+import java.lang.RuntimeException
+import com.github.jacekpoz.common.sendables.Sendable
 
-public class UnknownSendableException extends RuntimeException {
+open class UnknownSendableException : RuntimeException {
+    constructor() : super()
+    constructor(s: Sendable) : super("Unknown sendable type: " + s.javaClass)
 
-    private static final long serialVersionUID = -2232176022034976590L;
-
-    public UnknownSendableException() {
-        super();
-    }
-
-    public UnknownSendableException(Sendable s) {
-        super("Unknown sendable type: " + s.getClass());
+    companion object {
+        private const val serialVersionUID = -2232176022034976590L
     }
 }

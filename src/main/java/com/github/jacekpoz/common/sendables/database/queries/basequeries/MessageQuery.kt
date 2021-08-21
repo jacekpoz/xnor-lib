@@ -1,36 +1,37 @@
-package com.github.jacekpoz.common.sendables.database.queries.basequeries;
+package com.github.jacekpoz.common.sendables.database.queries.basequeries
 
-import com.github.jacekpoz.common.sendables.Message;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import com.github.jacekpoz.common.sendables.Message
 
 /**
  * Base query for doing stuff with messages containing fields used in most message queries.
  *
  * @author  jacekpoz
- * @version 0.0.2
- * @since   0.3.0
+ * @since   0.5.0
  */
-@ToString
-@EqualsAndHashCode
-public abstract class MessageQuery implements Query<Message> {
+abstract class MessageQuery(
+    open val messageID: Long,
+    open val chatID: Long,
+    override val callerID: Long,
+) : Query<Message> {
 
-    @Getter
-    private final long messageID;
-    @Getter
-    private final long chatID;
-    private final long callerID;
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is MessageQuery) return false
 
-    public MessageQuery(long messageID, long chatID, long callerID) {
-        this.messageID = messageID;
-        this.chatID = chatID;
-        this.callerID = callerID;
+        if (messageID != other.messageID) return false
+        if (chatID != other.chatID) return false
+        if (callerID != other.callerID) return false
+
+        return true
     }
 
-    @Override
-    public long getCallerID() {
-        return callerID;
+    override fun hashCode(): Int {
+        var result = messageID.hashCode()
+        result = 31 * result + chatID.hashCode()
+        result = 31 * result + callerID.hashCode()
+        return result
     }
+
+    override fun toString(): String = "MessageQuery(messageID=$messageID, chatID=$chatID, callerID=$callerID)"
 
 }

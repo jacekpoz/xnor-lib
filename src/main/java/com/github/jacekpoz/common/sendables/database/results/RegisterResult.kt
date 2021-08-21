@@ -1,31 +1,19 @@
-package com.github.jacekpoz.common.sendables.database.results;
+package com.github.jacekpoz.common.sendables.database.results
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.jacekpoz.common.EnumResults;
-import com.github.jacekpoz.common.sendables.database.queries.basequeries.UserQuery;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.jacekpoz.common.sendables.database.queries.basequeries.UserQuery
+import com.github.jacekpoz.common.EnumResults.Register
 
-import java.sql.SQLException;
+import java.sql.SQLException
 
-@ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
-public class RegisterResult extends UserResult {
-    @Getter
-    @Setter
-    private EnumResults.Register result;
+class RegisterResult @JsonCreator constructor(
+    @JsonProperty("query") uq: UserQuery?
+) : UserResult(uq!!) {
 
-    @Getter
-    @Setter
-    private SQLException ex;
+    @JsonProperty("result")
+    lateinit var result: Register
 
-    @JsonCreator
-    public RegisterResult(
-            @JsonProperty("query") UserQuery uq
-    ) {
-        super(uq);
-    }
+    @JsonProperty("ex")
+    lateinit var ex: SQLException
 }

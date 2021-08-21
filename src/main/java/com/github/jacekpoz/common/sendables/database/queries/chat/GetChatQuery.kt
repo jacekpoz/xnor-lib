@@ -1,21 +1,13 @@
-package com.github.jacekpoz.common.sendables.database.queries.chat;
+package com.github.jacekpoz.common.sendables.database.queries.chat
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.jacekpoz.common.sendables.database.queries.basequeries.ChatQuery;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.jacekpoz.common.sendables.database.queries.basequeries.ChatQuery
 
-@ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
-public class GetChatQuery extends ChatQuery {
+open class GetChatQuery @JsonCreator constructor(
+    @JsonProperty("chatID") chatID: Long,
+    @JsonProperty("callerID") callerID: Long,
+) : ChatQuery(chatID, callerID) {
 
-    @JsonCreator
-    public GetChatQuery(
-            @JsonProperty("chatID") long chatID,
-            @JsonProperty("callerID") long callerID
-    ) {
-        super(chatID, callerID);
-    }
-
+    override fun toString(): String = "GetChatQuery(chatID=$chatID, callerID=$callerID)"
 }

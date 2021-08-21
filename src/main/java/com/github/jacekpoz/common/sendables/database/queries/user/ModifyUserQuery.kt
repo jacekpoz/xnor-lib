@@ -1,31 +1,33 @@
-package com.github.jacekpoz.common.sendables.database.queries.user;
+package com.github.jacekpoz.common.sendables.database.queries.user
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.jacekpoz.common.sendables.database.queries.basequeries.UserQuery;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.jacekpoz.common.sendables.database.queries.basequeries.UserQuery
 
-@ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
-public class ModifyUserQuery extends UserQuery {
+open class ModifyUserQuery @JsonCreator constructor(
+    @JsonProperty("userID") userID: Long,
+    @JsonProperty("columnToModify") private val columnToModify: String,
+    @JsonProperty("newValue") private val newValue: String,
+    @JsonProperty("callerID") callerID: Long,
+) : UserQuery(userID, callerID) {
 
-    @Getter
-    private final String columnToModify;
-    @Getter
-    private final String newValue;
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is ModifyUserQuery) return false
+        if (!super.equals(other)) return false
 
-    @JsonCreator
-    public ModifyUserQuery(
-            @JsonProperty("userID") long userID,
-            @JsonProperty("columnToModify") String columnToModify,
-            @JsonProperty("newValue") String newValue,
-            @JsonProperty("callerID") long callerID
-    ) {
-        super(userID, callerID);
-        this.columnToModify = columnToModify;
-        this.newValue = newValue;
+        if (columnToModify != other.columnToModify) return false
+        if (newValue != other.newValue) return false
+
+        return true
     }
 
+    override fun hashCode(): Int {
+        var result = super.hashCode()
+        result = 31 * result + columnToModify.hashCode()
+        result = 31 * result + newValue.hashCode()
+        return result
+    }
+
+    override fun toString(): String = "ModifyUserQuery(userID=$userID, columnToModify='$columnToModify', newValue='$newValue', callerID=$callerID)"
 }

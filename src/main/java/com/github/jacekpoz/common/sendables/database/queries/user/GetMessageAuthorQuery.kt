@@ -1,30 +1,32 @@
-package com.github.jacekpoz.common.sendables.database.queries.user;
+package com.github.jacekpoz.common.sendables.database.queries.user
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonProperty
 
-@ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
-public class GetMessageAuthorQuery extends GetUserQuery {
+open class GetMessageAuthorQuery @JsonCreator constructor(
+    @JsonProperty("messageID") val messageID: Long,
+    @JsonProperty("chatID") val chatID: Long,
+    @JsonProperty("authorID") val authorID: Long,
+    @JsonProperty("callerID") callerID: Long,
+) : GetUserQuery(authorID, callerID) {
 
-    @Getter
-    private final long messageID;
-    @Getter
-    private final long chatID;
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is GetMessageAuthorQuery) return false
+        if (!super.equals(other)) return false
 
-    @JsonCreator
-    public GetMessageAuthorQuery(
-            @JsonProperty("messageID") long messageID,
-            @JsonProperty("chatID") long chatID,
-            @JsonProperty("authorID") long authorID,
-            @JsonProperty("callerID") long callerID
-    ) {
-        super(authorID, callerID);
-        this.messageID = messageID;
-        this.chatID = chatID;
+        if (messageID != other.messageID) return false
+        if (chatID != other.chatID) return false
+
+        return true
     }
 
+    override fun hashCode(): Int {
+        var result = super.hashCode()
+        result = 31 * result + messageID.hashCode()
+        result = 31 * result + chatID.hashCode()
+        return result
+    }
+
+    override fun toString(): String = "GetMessageAuthorQuery(messageID=$messageID, chatID=$chatID, authorID=$userID, callerID=$callerID)"
 }

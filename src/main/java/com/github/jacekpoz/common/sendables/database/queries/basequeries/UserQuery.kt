@@ -1,33 +1,34 @@
-package com.github.jacekpoz.common.sendables.database.queries.basequeries;
+package com.github.jacekpoz.common.sendables.database.queries.basequeries
 
-import com.github.jacekpoz.common.sendables.User;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import com.github.jacekpoz.common.sendables.User
 
 /**
  * Base query for doing stuff with users containing fields used in most user queries.
  *
  * @author  jacekpoz
- * @version 0.0.2
- * @since   0.3.0
+ * @since   0.5.0
  */
-@ToString
-@EqualsAndHashCode
-public abstract class UserQuery implements Query<User> {
+abstract class UserQuery(
+    open val userID: Long,
+    override val callerID: Long,
+) : Query<User> {
 
-    @Getter
-    private final long userID;
-    private final long callerID;
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is UserQuery) return false
 
-    public UserQuery(long userID, long callerID) {
-        this.userID = userID;
-        this.callerID = callerID;
+        if (userID != other.userID) return false
+        if (callerID != other.callerID) return false
+
+        return true
     }
 
-    @Override
-    public long getCallerID() {
-        return callerID;
+    override fun hashCode(): Int {
+        var result = userID.hashCode()
+        result = 31 * result + callerID.hashCode()
+        return result
     }
+
+    override fun toString(): String = "UserQuery(userID=$userID, callerID=$callerID)"
 
 }

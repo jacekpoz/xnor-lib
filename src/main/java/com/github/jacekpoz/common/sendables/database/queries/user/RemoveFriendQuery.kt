@@ -1,27 +1,30 @@
-package com.github.jacekpoz.common.sendables.database.queries.user;
+package com.github.jacekpoz.common.sendables.database.queries.user
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.jacekpoz.common.sendables.database.queries.basequeries.UserQuery;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.jacekpoz.common.sendables.database.queries.basequeries.UserQuery
 
-@ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
-public class RemoveFriendQuery extends UserQuery {
+open class RemoveFriendQuery @JsonCreator constructor(
+    @JsonProperty("userID") userID: Long,
+    @JsonProperty("friendID") val friendID: Long,
+    @JsonProperty("callerID") callerID: Long,
+) : UserQuery(userID, callerID) {
 
-    @Getter
-    private final long friendID;
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is RemoveFriendQuery) return false
+        if (!super.equals(other)) return false
 
-    @JsonCreator
-    public RemoveFriendQuery(
-            @JsonProperty("userID") long userID,
-            @JsonProperty("friendID") long friendID,
-            @JsonProperty("callerID") long callerID
-    ) {
-        super(userID, callerID);
-        this.friendID = friendID;
+        if (friendID != other.friendID) return false
+
+        return true
     }
 
+    override fun hashCode(): Int {
+        var result = super.hashCode()
+        result = 31 * result + friendID.hashCode()
+        return result
+    }
+
+    override fun toString(): String = "RemoveFriendQuery(userID=$userID, friendID=$friendID, callerID=$callerID)"
 }

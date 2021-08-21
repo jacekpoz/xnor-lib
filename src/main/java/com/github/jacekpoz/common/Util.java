@@ -52,7 +52,7 @@ public final class Util {
      */
     public static String userListToString(List<User> users) {
         List<String> nicknames = users.stream()
-                .map(User::getNickname)
+                .map(User::getUsername)
                 .collect(Collectors.toList());
         return usernamesToString(nicknames);
     }
@@ -111,8 +111,8 @@ public final class Util {
 
         List<User> similarUsernames = new ArrayList<>();
         for (User ui : users) {
-            float result = metric.compare(inputUsername, ui.getNickname());
-            if (result > 0.5 || ui.getNickname().startsWith(inputUsername))
+            float result = metric.compare(inputUsername, ui.getUsername());
+            if (result > 0.5 || ui.getUsername().startsWith(inputUsername))
                 similarUsernames.add(ui);
         }
 

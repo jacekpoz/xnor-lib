@@ -1,33 +1,35 @@
-package com.github.jacekpoz.common.sendables.database.queries.basequeries;
+package com.github.jacekpoz.common.sendables.database.queries.basequeries
 
-import com.github.jacekpoz.common.sendables.Chat;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import com.github.jacekpoz.common.sendables.Chat
 
 /**
  * Base query for doing stuff with chats containing fields used in most chat queries.
  *
  * @author  jacekpoz
- * @version 0.0.2
- * @since   0.3.0
+ * @since   0.5.0
  */
-@ToString
-@EqualsAndHashCode
-public abstract class ChatQuery implements Query<Chat> {
+abstract class ChatQuery(
+    open val chatID: Long,
+    override val callerID: Long,
+) : Query<Chat> {
 
-    @Getter
-    private final long chatID;
-    private final long callerID;
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is ChatQuery) return false
 
-    public ChatQuery(long chatID, long callerID) {
-        this.chatID = chatID;
-        this.callerID = callerID;
+        if (chatID != other.chatID) return false
+        if (callerID != other.callerID) return false
+
+        return true
     }
 
-    @Override
-    public long getCallerID() {
-        return callerID;
+    override fun hashCode(): Int {
+        var result = chatID.hashCode()
+        result = 31 * result + callerID.hashCode()
+        return result
     }
+
+    override fun toString(): String = "ChatQuery(chatID=$chatID, callerID=$callerID)"
+
 
 }

@@ -1,35 +1,32 @@
-package com.github.jacekpoz.common.sendables.database.queries.user;
+package com.github.jacekpoz.common.sendables.database.queries.user
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.jacekpoz.common.sendables.database.queries.basequeries.UserQuery;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.jacekpoz.common.sendables.database.queries.basequeries.UserQuery
 
-@ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
-public class RegisterQuery extends UserQuery {
+open class RegisterQuery @JsonCreator constructor(
+    @JsonProperty("username") private val username: String,
+    @JsonProperty("hash") private val hash: String,
+    @JsonProperty("callerID") callerID: Long,
+) : UserQuery(-1, callerID) {
 
-    @Getter
-    private final String username;
-    @Getter
-    private final String hash;
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is RegisterQuery) return false
+        if (!super.equals(other)) return false
 
-    @JsonCreator
-    public RegisterQuery(
-            @JsonProperty("username") String username,
-            @JsonProperty("hash") String hash,
-            @JsonProperty("callerID") long callerID
-    ) {
-        super(-1, callerID);
-        this.username = username;
-        this.hash = hash;
+        if (username != other.username) return false
+        if (hash != other.hash) return false
+
+        return true
     }
 
-    @Override
-    public long getUserID() {
-        return -1;
+    override fun hashCode(): Int {
+        var result = super.hashCode()
+        result = 31 * result + username.hashCode()
+        result = 31 * result + hash.hashCode()
+        return result
     }
 
+    override fun toString(): String = "RegisterQuery(username='$username', hash='$hash', callerID=$callerID)"
 }

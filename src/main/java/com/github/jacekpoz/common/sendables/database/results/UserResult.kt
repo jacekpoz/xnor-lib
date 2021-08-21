@@ -1,69 +1,60 @@
-package com.github.jacekpoz.common.sendables.database.results;
+package com.github.jacekpoz.common.sendables.database.results
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonGetter;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.jacekpoz.common.sendables.User;
-import com.github.jacekpoz.common.sendables.database.queries.basequeries.Query;
-import com.github.jacekpoz.common.sendables.database.queries.basequeries.UserQuery;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.jacekpoz.common.sendables.database.queries.basequeries.ChatQuery
+import com.github.jacekpoz.common.sendables.Chat
+import com.fasterxml.jackson.annotation.JsonGetter
+import com.github.jacekpoz.common.sendables.User
+import com.github.jacekpoz.common.sendables.database.queries.basequeries.Query
+import com.github.jacekpoz.common.sendables.database.queries.basequeries.UserQuery
+import java.util.ArrayList
 
-import java.util.ArrayList;
-import java.util.List;
+open class UserResult @JsonCreator constructor(
+    @JsonProperty("query") override val query: UserQuery?
+) : Result<User> {
 
-@ToString
-@EqualsAndHashCode
-public class UserResult implements Result<User> {
-
-    private final UserQuery query;
     @JsonProperty("users")
-    private final List<User> users;
-    @JsonProperty("success")
-    private boolean success;
+    private val users: MutableList<User> = ArrayList()
 
-    @JsonCreator
-    public UserResult(
-            @JsonProperty("query") UserQuery uq
-    ) {
-        query = uq;
-        users = new ArrayList<>();
-    }
+    @JsonProperty("success")
+    override var success = false
 
     @JsonGetter("users")
-    @Override
-    public List<User> get() {
-        return users;
+    override fun get(): List<User> {
+        return users
     }
 
-    @Override
-    public User get(int index) {
-        return users.get(index);
+    override fun get(index: Int): User {
+        return users[index]
     }
 
-    @Override
-    public void add(User user) {
-        users.add(user);
+    override fun add(item: User) {
+        users.add(item)
     }
 
-    @Override
-    public void add(List<User> users) {
-        this.users.addAll(users);
+    override fun add(items: List<User>) {
+        users.addAll(items)
     }
 
-    @Override
-    public Query<User> getQuery() {
-        return query;
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is UserResult) return false
+
+        if (query != other.query) return false
+        if (users != other.users) return false
+        if (success != other.success) return false
+
+        return true
     }
 
-    @Override
-    public void setSuccess(boolean success) {
-        this.success = success;
+    override fun hashCode(): Int {
+        var result = query.hashCode()
+        result = 31 * result + users.hashCode()
+        result = 31 * result + success.hashCode()
+        return result
     }
 
-    @Override
-    public boolean success() {
-        return success;
-    }
+    override fun toString(): String = "UserResult(query=$query, chats=$users, success=$success)"
 
 }

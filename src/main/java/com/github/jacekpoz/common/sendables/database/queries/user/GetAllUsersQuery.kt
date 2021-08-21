@@ -1,20 +1,12 @@
-package com.github.jacekpoz.common.sendables.database.queries.user;
+package com.github.jacekpoz.common.sendables.database.queries.user
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.jacekpoz.common.sendables.database.queries.basequeries.UserQuery;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonProperty
+import com.github.jacekpoz.common.sendables.database.queries.basequeries.UserQuery
 
-@ToString(callSuper = true)
-@EqualsAndHashCode(callSuper = true)
-public class GetAllUsersQuery extends UserQuery {
+open class GetAllUsersQuery @JsonCreator constructor(
+    @JsonProperty("callerID") callerID: Long,
+) : UserQuery(-1, callerID) {
 
-    @JsonCreator
-    public GetAllUsersQuery(
-            @JsonProperty("callerID") long callerID
-    ) {
-        super(-1, callerID);
-    }
-
+    override fun toString(): String = "GetAllUsersQuery(callerID=$callerID)"
 }
