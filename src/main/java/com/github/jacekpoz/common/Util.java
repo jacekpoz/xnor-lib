@@ -37,7 +37,7 @@ public final class Util {
      * @since  0.2.0
      */
     public static String localDateTimeToString(LocalDateTime date) {
-        return String.format("<html> %02d:%02d:%02d<br>%02d-%02d-%04d</html>",
+        return date == null ? "null" : String.format("<html> %02d:%02d:%02d<br>%02d-%02d-%04d</html>",
                 date.getHour(), date.getMinute(), date.getSecond(),
                 date.getDayOfMonth(), date.getMonthValue(), date.getYear());
     }
@@ -110,10 +110,11 @@ public final class Util {
         StringMetric metric = StringMetrics.damerauLevenshtein();
 
         List<User> similarUsernames = new ArrayList<>();
-        for (User ui : users) {
-            float result = metric.compare(inputUsername, ui.getUsername());
-            if (result > 0.5 || ui.getUsername().startsWith(inputUsername))
-                similarUsernames.add(ui);
+        for (User u : users) {
+            if (u.getUsername() == null) continue;
+            float result = metric.compare(inputUsername, u.getUsername());
+            if (result > 0.5 || u.getUsername().startsWith(inputUsername))
+                similarUsernames.add(u);
         }
 
         return similarUsernames;
