@@ -17,7 +17,9 @@ data class Chat @JsonCreator constructor(
     @JsonProperty("messageCounter") var messageCounter: Long = -1,
 ) : Sendable {
 
+    @JsonProperty("memberIDs")
     val memberIDs: MutableList<Long> = ArrayList()
+    @JsonProperty("messages")
     val messages: MutableList<Message> = ArrayList()
 
     override fun equals(other: Any?): Boolean = (other is Chat) && chatID == other.chatID

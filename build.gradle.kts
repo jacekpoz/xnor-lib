@@ -23,10 +23,10 @@ dependencies {
     implementation("com.kosprov.jargon2:jargon2-api:1.1.1")
     runtimeOnly("com.kosprov.jargon2:jargon2-native-ri-backend:1.1.1")
     implementation("com.github.mpkorstanje:simmetrics-core:4.1.1")
-    implementation("com.fasterxml.jackson.core:jackson-core:2.12.4")
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.12.4")
-    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.12.4")
-    implementation(kotlin("stdlib-jdk8"))
+    implementation("com.fasterxml.jackson.core:jackson-core:2.12.5")
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.12.5")
+    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.12.5")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.21")
 }
 
 tasks {

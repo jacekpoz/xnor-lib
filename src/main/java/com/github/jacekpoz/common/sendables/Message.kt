@@ -22,6 +22,9 @@ data class Message @JsonCreator constructor(
         content: String?
     ): this(-1, -1, -1, content, LocalDateTime.MIN)
 
+    @JsonProperty("attachments")
+    val attachments: List<Attachment> = ArrayList()
+
     override fun equals(other: Any?): Boolean = (other is Message) &&
             messageID == other.messageID &&
             chatID == other.chatID &&

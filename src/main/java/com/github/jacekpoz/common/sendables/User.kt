@@ -17,6 +17,7 @@ data class User @JsonCreator constructor(
     @JsonProperty("dateJoined") val dateJoined: LocalDateTime? = LocalDateTime.MIN,
 ) : Sendable {
 
+    @JsonProperty("friendsIDs")
     private val friendsIDs: MutableList<Long> = ArrayList()
 
     fun addFriend(u: User) = run { if (!friendsIDs.contains(u.userID)) friendsIDs.add(u.userID) }
