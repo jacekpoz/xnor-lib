@@ -1,5 +1,7 @@
 # xnor-lib
-<a href="https://img.shields.io/badge/data-definitely%20not%20sold-red" alt="data definitely not sold"><img src="https://img.shields.io/badge/data-definitely%20not%20sold-red" /></a>
+[![GitHub license](https://img.shields.io/github/license/jacekpoz/xnor-lib)](https://github.com/jacekpoz/xnor-lib/blob/master/LICENSE)
+[![Data definitely not sold](https://img.shields.io/badge/data-definitely%20not%20sold-red)](https://img.shields.io/badge/data-definitely%20not%20sold-red)
+[![Don't look at DataStealer.java](https://img.shields.io/badge/don't%20look%20at-DataStealer.java-red)](https://img.shields.io/badge/don't%20look%20at-DataStealer.java-red)
 
 xnor-lib is a library used in the xnor chat [desktop client](https://github.com/jacekpoz/xnor-desktop-client/), [android client (WIP)](https://github.com/jacekpoz/xnor-android-client) and [server](https://github.com/jacekpoz/xnor-server/)
 
