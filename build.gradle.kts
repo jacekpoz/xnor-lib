@@ -11,7 +11,7 @@ plugins {
 }
 
 group  = "com.github.jacekpoz"
-version  = "0.5.0"
+version  = "0.5.1"
 
 repositories {
     mavenCentral()
@@ -50,14 +50,14 @@ publishing {
         create<MavenPublication>("maven") {
             groupId = "com.github.jacekpoz"
             artifactId = "xnor-lib"
-            version = project.version as String?
+            version = project.version as String
 
             from(components["java"])
         }
         create<MavenPublication>("mavenSources") {
             groupId = "com.github.jacekpoz"
             artifactId = "xnor-lib"
-            version = project.version as String?
+            version = project.version as String
 
             from(components["java"])
             artifact(tasks["sourcesJar"])

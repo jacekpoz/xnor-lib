@@ -4,6 +4,7 @@ import com.github.jacekpoz.common.sendables.User;
 import org.simmetrics.StringMetric;
 import org.simmetrics.metrics.StringMetrics;
 
+import java.io.File;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +59,7 @@ public final class Util {
     }
 
     /**
-     * Turns a list of usernames into a tooltip for a chat.
+     * Turns a list of usernames into a vertical list of member for a tolltip for a chat.
      * For a chat with 4 or fewer members it will look like this:
      * <pre>
      *     kupsko
