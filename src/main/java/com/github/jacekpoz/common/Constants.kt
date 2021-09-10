@@ -4,7 +4,7 @@ object Constants {
     // TODO change this later when I figure out how to load part of the chat and shit
     const val DEFAULT_MESSAGES_LIMIT: Long = 999999
 
-    const val DB_NAME = "chatdatabase"
+    const val DB_NAME = "xnordatabase"
     const val USERS_TABLE = "users"
     const val FRIENDS_TABLE = "friends"
     const val CHATS_TABLE = "chats"

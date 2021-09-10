@@ -12,4 +12,6 @@ data class Attachment @JsonCreator constructor(
 
     @JsonProperty("fileContents")
     val fileContents: List<Byte> = ArrayList()
+
+    fun getFullName(): String = "$fileName.$fileExtension"
 }
