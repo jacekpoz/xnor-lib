@@ -2,16 +2,13 @@ package com.github.jacekpoz.common.sendables.database.results
 
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.github.jacekpoz.common.sendables.database.queries.basequeries.ChatQuery
-import com.github.jacekpoz.common.sendables.Chat
 import com.fasterxml.jackson.annotation.JsonGetter
 import com.github.jacekpoz.common.sendables.User
-import com.github.jacekpoz.common.sendables.database.queries.basequeries.Query
-import com.github.jacekpoz.common.sendables.database.queries.basequeries.UserQuery
+import com.github.jacekpoz.common.sendables.database.queries.UserQuery
 import java.util.ArrayList
 
 open class UserResult @JsonCreator constructor(
-    @JsonProperty("query") override val query: UserQuery?,
+    @JsonProperty("query") override val query: UserQuery,
 ) : Result<User> {
 
     @JsonProperty("users")

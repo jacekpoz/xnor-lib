@@ -1,6 +1,6 @@
 package com.github.jacekpoz.common.exceptions
 
-import com.github.jacekpoz.common.sendables.database.queries.basequeries.Query
+import com.github.jacekpoz.common.sendables.database.queries.Query
 
 class UnknownQueryException : UnknownSendableException {
     constructor() : super()

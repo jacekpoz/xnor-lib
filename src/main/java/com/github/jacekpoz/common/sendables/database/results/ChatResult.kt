@@ -4,8 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonGetter
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.github.jacekpoz.common.sendables.Chat
-import com.github.jacekpoz.common.sendables.database.queries.basequeries.ChatQuery
-import com.github.jacekpoz.common.sendables.database.queries.basequeries.Query
+import com.github.jacekpoz.common.sendables.database.queries.ChatQuery
 
 open class ChatResult @JsonCreator constructor(
     @JsonProperty("query") override val query: ChatQuery?,

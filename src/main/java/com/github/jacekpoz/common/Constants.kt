@@ -13,4 +13,6 @@ object Constants {
     const val USERS_IN_CHATS_TABLE = "users_in_chats"
     const val FRIEND_REQUESTS_TABLE = "friend_requests"
     const val ATTACHMENTS_TABLE = "attachments"
+
+    const val GLOBAL_CHAT_ID: Long = 0
 }

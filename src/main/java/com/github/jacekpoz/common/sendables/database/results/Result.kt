@@ -1,7 +1,7 @@
 package com.github.jacekpoz.common.sendables.database.results
 
 import com.github.jacekpoz.common.sendables.Sendable
-import com.github.jacekpoz.common.sendables.database.queries.basequeries.Query
+import com.github.jacekpoz.common.sendables.database.queries.Query
 
 /**
  * Results are returned by the server to the client in response to queries.

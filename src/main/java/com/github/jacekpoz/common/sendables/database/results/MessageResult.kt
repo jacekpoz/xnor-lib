@@ -2,10 +2,9 @@ package com.github.jacekpoz.common.sendables.database.results
 
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
-import com.github.jacekpoz.common.sendables.database.queries.basequeries.MessageQuery
+import com.github.jacekpoz.common.sendables.database.queries.MessageQuery
 import com.fasterxml.jackson.annotation.JsonGetter
 import com.github.jacekpoz.common.sendables.Message
-import com.github.jacekpoz.common.sendables.database.queries.basequeries.Query
 import java.util.ArrayList
 
 open class MessageResult @JsonCreator constructor(
