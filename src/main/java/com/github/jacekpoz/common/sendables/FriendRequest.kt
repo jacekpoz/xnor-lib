@@ -4,6 +4,6 @@ import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
 
 data class FriendRequest @JsonCreator constructor(
-    @JsonProperty("senderID") val senderID: Long,
-    @JsonProperty("recipientID") val recipientID: Long,
+    @JsonProperty("sender") val sender: User,
+    @JsonProperty("recipient") val recipient: User,
 ) : Sendable
