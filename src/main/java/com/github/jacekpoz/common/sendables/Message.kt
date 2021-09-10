@@ -14,12 +14,12 @@ data class Message @JsonCreator constructor(
     @JsonProperty("messageID") val messageID: Long,
     @JsonProperty("chatID") val chatID: Long,
     @JsonProperty("authorID") val authorID: Long,
-    @JsonProperty("content") var content: String?,
+    @JsonProperty("content") var content: String,
     @JsonProperty("dateSent") val sentDate: LocalDateTime? = LocalDateTime.MIN,
 ) : Sendable {
 
     constructor(
-        content: String?
+        content: String
     ): this(-1, -1, -1, content, LocalDateTime.MIN)
 
     @JsonProperty("attachments")
