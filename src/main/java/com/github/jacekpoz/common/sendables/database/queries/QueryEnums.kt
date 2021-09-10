@@ -122,6 +122,11 @@ enum class UserQueryEnum constructor(
             Pair("hash", String::class.java),
         )
     ),
+    GET_ALL_USERS(
+        mapOf(
+            Pair("userID", Long::class.java)
+        )
+    ),
     GET_FRIENDS(
         mapOf(
             Pair("userID", Long::class.java),
