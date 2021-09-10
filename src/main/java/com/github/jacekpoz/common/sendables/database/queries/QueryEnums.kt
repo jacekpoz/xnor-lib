@@ -30,7 +30,6 @@ enum class ChatQueryEnum constructor(
     ),
     INSERT_CHAT(
         mapOf(
-            Pair("chatID", Long::class.java),
             Pair("chatName", String::class.java),
             Pair("memberIDs", LongArray::class.java),
         )
