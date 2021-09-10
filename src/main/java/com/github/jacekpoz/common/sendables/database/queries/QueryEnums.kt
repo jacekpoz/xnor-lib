@@ -124,7 +124,7 @@ enum class UserQueryEnum constructor(
     ),
     GET_ALL_USERS(
         mapOf(
-            Pair("userID", Long::class.java)
+
         )
     ),
     GET_FRIENDS(
