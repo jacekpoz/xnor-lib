@@ -13,7 +13,7 @@ import com.github.jacekpoz.common.sendables.Chat
 data class ChatQuery @JsonCreator constructor(
     @JsonProperty("update") override val update: Boolean,
     @JsonProperty("callerID") override val callerID: Long,
-    @JsonProperty("queryType") override val queryType: QueryEnum<Chat>,
+    @JsonProperty("queryType") override val queryType: ChatQueryEnum,
 ) : Query<Chat> {
 
     @JsonProperty("values") override val values: MutableMap<String, Any> = mutableMapOf()

@@ -1,3 +1,4 @@
+@file:JvmName("QueryEnums")
 package com.github.jacekpoz.common.sendables.database.queries
 
 import com.github.jacekpoz.common.sendables.Chat
@@ -99,6 +100,7 @@ enum class UserQueryEnum constructor(
     GET_USER(
         mapOf(
             Pair("userID", Long::class.java),
+            Pair("username", String::class.java),
         )
     ),
     MODIFY_USER(
@@ -144,7 +146,7 @@ enum class UserQueryEnum constructor(
     ),
 }
 
-enum class FriendRequestEnum constructor(
+enum class FriendRequestQueryEnum constructor(
     override val allowedValues: Map<String, Class<*>>
 ) : QueryEnum<FriendRequest> {
     GET_FRIEND_REQUESTS(

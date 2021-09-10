@@ -7,7 +7,7 @@ import com.github.jacekpoz.common.sendables.Chat
 import com.github.jacekpoz.common.sendables.database.queries.ChatQuery
 
 open class ChatResult @JsonCreator constructor(
-    @JsonProperty("query") override val query: ChatQuery?,
+    @JsonProperty("query") override val query: ChatQuery,
 ) : Result<Chat> {
 
     @JsonProperty("chats")

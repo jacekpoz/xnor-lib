@@ -35,7 +35,7 @@ interface Result<T : Sendable?> : Sendable {
      * @author jacekpoz
      * @since  0.5.0
      */
-    fun get(): List<T>?
+    fun get(): List<T>
 
     /**
      * I just didn't want to do `result.get().get(0)` each time.

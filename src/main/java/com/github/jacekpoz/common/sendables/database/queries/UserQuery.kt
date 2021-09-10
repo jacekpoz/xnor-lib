@@ -12,7 +12,7 @@ import com.github.jacekpoz.common.sendables.User
 data class UserQuery(
     @JsonProperty("update") override val update: Boolean,
     @JsonProperty("callerID") override val callerID: Long,
-    @JsonProperty("queryType") override val queryType: QueryEnum<User>,
+    @JsonProperty("queryType") override val queryType: UserQueryEnum,
 ) : Query<User> {
 
     @JsonProperty("values") override val values: MutableMap<String, Any> = mutableMapOf()

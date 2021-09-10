@@ -12,7 +12,7 @@ import com.github.jacekpoz.common.sendables.FriendRequest
 data class FriendRequestQuery(
     @JsonProperty("update") override val update: Boolean,
     @JsonProperty("callerID") override val callerID: Long,
-    @JsonProperty("queryType") override val queryType: QueryEnum<FriendRequest>,
+    @JsonProperty("queryType") override val queryType: FriendRequestQueryEnum,
 ) : Query<FriendRequest> {
 
     override val values: MutableMap<String, Any> = mutableMapOf()

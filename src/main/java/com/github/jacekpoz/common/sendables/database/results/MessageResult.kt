@@ -18,7 +18,7 @@ open class MessageResult @JsonCreator constructor(
     override var success = false
 
     @JsonGetter("messages")
-    override fun get(): List<Message>? {
+    override fun get(): List<Message> {
         return messages
     }
 
