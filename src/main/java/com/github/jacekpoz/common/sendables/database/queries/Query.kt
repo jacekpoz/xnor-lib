@@ -24,7 +24,18 @@ interface Query<T> : Sendable {
      * @author jacekpoz
      * @since  0.5.2
      */
-    fun <T> getValue(key: String, type: Class<T>): T = type.cast(values[key])
+    fun <T> getValue(key: String, type: Class<T>): T? {
+        return try {
+            val value = values[key]
+            println("value: $value")
+            val returned = type.cast(value)
+            println("returned: $returned")
+            returned
+        } catch (e: ClassCastException) {
+            e.printStackTrace()
+            null
+        }
+    }
 
     /**
      * Puts the value if it's allowed in this type of query.
